@@ -1,0 +1,18 @@
+# Performs dependency review on every pull request, waiting for dependency-subjission to complete
+name: Dependency review for pull requests
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Perform dependency review
+      uses: actions/dependency-review-action@v4
+      with:
+        retry-on-snapshot-warnings: true
+        retry-on-snapshot-warnings-timeout: 600
